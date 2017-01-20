@@ -3,14 +3,15 @@ package com.devcortes.components.service;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Repository;
 
 import com.devcortes.components.entity.Phone;
@@ -23,11 +24,15 @@ public class PhoneDao implements IPhoneDao{
 
 	@Override
 	public List<Phone> getAll() {
+		DetachedCriteria query = DetachedCriteria.forClass(Phone.class)
+				.createAlias("phoneFeatures", "feature")
+				.add(Restrictions.eq("feature.id", 1))
+				.add(Restrictions.eq("producer", "qwerty"));	
 		Session session = null;
 		ArrayList<Phone> result = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();			
-			result = (ArrayList<Phone>)session.createCriteria(Phone.class).list();			
+			result = (ArrayList<Phone>)query.getExecutableCriteria(session).list();			
 		} finally {
 			if (session.isOpen()) {
 	            session.close();

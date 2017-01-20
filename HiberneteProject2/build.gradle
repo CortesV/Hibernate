@@ -27,6 +27,7 @@ repositories {
 
 
 dependencies {
+	compile group: 'org.hibernate', name: 'hibernate-envers', version: '5.2.6.Final'
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.boot:spring-boot-starter-web')

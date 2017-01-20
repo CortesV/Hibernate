@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.devcortes.components.entity.Address;
 import com.devcortes.components.interfaces.IAddressDao;
@@ -15,10 +16,9 @@ import com.devcortes.components.service.request.AddressRequest;
 import com.devcortes.service.HibernateUtil;
 
 @Repository
-public class AddressDao implements IAddressDao{
+public class AddressDao implements IAddressDao{	
 	
-	
-	
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public List<Address> getAll() {
 		Session session = null;
@@ -35,6 +35,7 @@ public class AddressDao implements IAddressDao{
 		return result;
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void delete(Integer id) {
 		Session session = null;
@@ -49,6 +50,7 @@ public class AddressDao implements IAddressDao{
 		} 
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void update(Integer id, AddressRequest address) {
 		Session session = null;
@@ -65,7 +67,8 @@ public class AddressDao implements IAddressDao{
 	        }
 		}
 	}
-
+	
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public Address getById(Integer id) {
 		Session session = null;
@@ -82,6 +85,7 @@ public class AddressDao implements IAddressDao{
         return result;
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void add(AddressRequest address) {
 		Session session = null;

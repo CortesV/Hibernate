@@ -1,6 +1,8 @@
 package com.devcortes.components.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +33,11 @@ public class Phone implements Serializable {
 	
 	private Integer owner;
 	
-	private Integer idFeatures;
+	@OneToOne
+    @JoinColumn(name = "idFeatures")
+    private PhoneFeatures phoneFeatures; 
+	
+	//private Integer idFeatures;
 	
 	/*@ManyToOne
     @JoinColumn(name = "owner")
@@ -41,13 +47,13 @@ public class Phone implements Serializable {
 
 	public Phone() {}
 
-	public Phone(Integer idPhone, String producer, String model, String number, Integer owner, Integer idFeatures) {
+	public Phone(Integer idPhone, String producer, String model, String number, Integer owner/*, Integer idFeatures*/) {
 		this.idPhone = idPhone;
 		this.producer = producer;
 		this.model = model;
 		this.number = number;
 		this.owner = owner;
-		this.idFeatures = idFeatures;
+		//this.idFeatures = idFeatures;
 	}
 
 	public Integer getIdPhone() {
@@ -90,14 +96,33 @@ public class Phone implements Serializable {
 		this.owner = owner;
 	}
 
-	public Integer getFeature() {
+	public PhoneFeatures getPhoneFeatures() {
+		return phoneFeatures;
+	}
+
+	public void setPhoneFeatures(PhoneFeatures phoneFeatures) {
+		this.phoneFeatures = phoneFeatures;
+	}
+
+	
+	
+	/*public List<PhoneFeatures> getList() {
+		return list;
+	}
+
+	public void setList(List<PhoneFeatures> list) {
+		this.list = list;
+	}*/
+	
+	
+	/*public Integer getFeature() {
 		return idFeatures;
 	}
 
 	public void setFeature(Integer idFeatures) {
 		this.idFeatures = idFeatures;
 	}
-	
+	*/
 	
 
 	/*public Person getPers() {
