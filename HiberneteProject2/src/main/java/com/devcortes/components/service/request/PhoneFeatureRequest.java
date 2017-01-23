@@ -8,6 +8,10 @@ public class PhoneFeatureRequest {
 	private Integer mainCamera;
 	
 	private Integer frontalCamera;
+	
+	
+
+	public PhoneFeatureRequest() {}
 
 	public PhoneFeatureRequest(String ram, String hdd, Integer mainCamera, Integer frontalCamera) {
 		this.ram = ram;

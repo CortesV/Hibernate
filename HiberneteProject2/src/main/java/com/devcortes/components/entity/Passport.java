@@ -23,11 +23,6 @@ public class Passport implements Serializable {
 	private Integer id;	
 	
 	private String code;
-	
-	
-	/*@OneToOne(optional = false, mappedBy="pass")
-	@JsonBackReference*/
-	//private Person pers;
 
 	public Passport() {}
 
@@ -50,15 +45,4 @@ public class Passport implements Serializable {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
-	/*public Person getPerson() {
-		return pers;
-	}
-
-	public void setPerson(Person person) {
-		this.pers = person;
-	}*/
-	
-	
-	
 }

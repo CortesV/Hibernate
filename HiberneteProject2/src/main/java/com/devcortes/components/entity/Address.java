@@ -14,13 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Table(name = "address", catalog = "system")
+@Audited
 public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -34,6 +36,7 @@ public class Address implements Serializable {
 	
 	private Integer person;
 	
+	@NotAudited
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "address", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private List<Person> persons = new ArrayList<>();
@@ -45,6 +48,8 @@ public class Address implements Serializable {
 		this.city = city;
 		this.person = person;
 	}
+	
+	
 
 	public Integer getId() {
 		return id;

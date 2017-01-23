@@ -7,6 +7,8 @@ public class AddressRequest {
 	
 	private Integer person;
 
+	public AddressRequest() {}
+	
 	public AddressRequest(String address, String city, Integer person) {
 		this.address = address;
 		this.city = city;

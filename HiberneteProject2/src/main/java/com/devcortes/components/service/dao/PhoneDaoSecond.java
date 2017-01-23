@@ -1,9 +1,10 @@
-package com.devcortes.components.service;
+package com.devcortes.components.service.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ import com.devcortes.service.HibernateUtil;
 public class PhoneDaoSecond implements IPhoneDao{
 
 	@Override
-	public List<Phone> getAll() {
+	public List<Phone> getAll(DetachedCriteria detachedCriteria) {
 		Session session = null;
 		ArrayList<Phone> result = null;
 		try {

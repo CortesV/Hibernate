@@ -5,15 +5,16 @@ public class PhoneRequest {
 	
 	private String model;
 	
-	private String number;
-	
-	private String owner;
+	private String number;	
 
-	public PhoneRequest(String producer, String model, String number, String owner) {
+	
+
+	public PhoneRequest() {}
+
+	public PhoneRequest(String producer, String model, String number) {
 		this.producer = producer;
 		this.model = model;
-		this.number = number;
-		this.owner = owner;
+		this.number = number;		
 	}
 
 	public String getProducer() {
@@ -40,13 +41,7 @@ public class PhoneRequest {
 		this.number = number;
 	}
 
-	public String getOwner() {
-		return owner;
-	}
-
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
+	
 	
 	
 }

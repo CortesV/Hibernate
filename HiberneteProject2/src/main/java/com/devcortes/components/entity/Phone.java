@@ -14,7 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.envers.NotAudited;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "phone", catalog = "system")
@@ -29,31 +32,27 @@ public class Phone implements Serializable {
 	
 	private String model;
 	
-	private String number;	
-	
-	private Integer owner;
-	
-	@OneToOne
+	private String number;		
+
+	@NotAudited
+	@ManyToOne
     @JoinColumn(name = "idFeatures")
+	@JsonManagedReference
     private PhoneFeatures phoneFeatures; 
 	
-	//private Integer idFeatures;
-	
-	/*@ManyToOne
+	@NotAudited
+	@ManyToOne
     @JoinColumn(name = "owner")
 	@JsonBackReference
-	private Person pers;*/
+	private Person pers;
 	
 
 	public Phone() {}
 
-	public Phone(Integer idPhone, String producer, String model, String number, Integer owner/*, Integer idFeatures*/) {
-		this.idPhone = idPhone;
+	public Phone(String producer, String model, String number) {		
 		this.producer = producer;
 		this.model = model;
-		this.number = number;
-		this.owner = owner;
-		//this.idFeatures = idFeatures;
+		this.number = number;			
 	}
 
 	public Integer getIdPhone() {
@@ -88,13 +87,7 @@ public class Phone implements Serializable {
 		this.number = number;
 	}
 
-	public Integer getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Integer owner) {
-		this.owner = owner;
-	}
+	
 
 	public PhoneFeatures getPhoneFeatures() {
 		return phoneFeatures;
@@ -102,36 +95,16 @@ public class Phone implements Serializable {
 
 	public void setPhoneFeatures(PhoneFeatures phoneFeatures) {
 		this.phoneFeatures = phoneFeatures;
-	}
-
-	
-	
-	/*public List<PhoneFeatures> getList() {
-		return list;
-	}
-
-	public void setList(List<PhoneFeatures> list) {
-		this.list = list;
-	}*/
-	
-	
-	/*public Integer getFeature() {
-		return idFeatures;
-	}
-
-	public void setFeature(Integer idFeatures) {
-		this.idFeatures = idFeatures;
-	}
-	*/
+	}	
 	
 
-	/*public Person getPers() {
+	public Person getPers() {
 		return pers;
 	}
 
 	public void setPers(Person pers) {
 		this.pers = pers;
-	}*/
+	}
 	
 	
 	

@@ -8,6 +8,8 @@ public class PersonRequest {
 	private Integer passport;	
 	
 	private Integer address;
+	
+	public PersonRequest() {}
 
 	public PersonRequest(String name, String surname, Integer passport, Integer address) {		
 		this.name = name;

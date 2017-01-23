@@ -15,5 +15,6 @@ public class HiberneteProject2Application {
 
 	public static void main(String[] args) {		
 		SpringApplication.run(HiberneteProject2Application.class, args);		
+		//ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	}
 }

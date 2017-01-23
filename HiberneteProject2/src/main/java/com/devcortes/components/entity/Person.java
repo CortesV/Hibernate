@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.envers.NotAudited;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -33,20 +35,22 @@ public class Person implements Serializable {
 	private String surname;	
 	
 	
-	
+	@NotAudited
 	@OneToOne
 	@JoinColumn(name="passport")
 	@JsonBackReference
 	private Passport pass;	
 	
+	@NotAudited
 	@OneToOne
     @JoinColumn(name = "address")
 	@JsonBackReference
 	private Address address;
 	
-	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "pers", cascade = CascadeType.ALL)
+	@NotAudited
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pers", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<Phone> phones = new ArrayList<>();*/
+	private List<Phone> phones = new ArrayList<>();
 
 	public Person() {}
 
@@ -97,13 +101,13 @@ public class Person implements Serializable {
 		this.pass = passport;
 	}
 
-	/*public List<Phone> getPhones() {
+	public List<Phone> getPhones() {
 		return phones;
 	}
 
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
-	}*/
+	}
 
 	
 		

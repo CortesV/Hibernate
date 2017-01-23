@@ -1,4 +1,4 @@
-package com.devcortes.components.service;
+package com.devcortes.components.service.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +38,11 @@ public class PersonDao implements IPersonDao{
 	public void delete(Integer id) {
 		Session session = null;
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();			
+			session = HibernateUtil.getSessionFactory().openSession();	
+			session.beginTransaction(); 
 			Person del = (Person) session.get(Person.class, id);
-	        session.delete(del);			
+	        session.delete(del);	
+	        session.getTransaction().commit();
 		} finally {
 			if (session.isOpen()) {
 	            session.close();

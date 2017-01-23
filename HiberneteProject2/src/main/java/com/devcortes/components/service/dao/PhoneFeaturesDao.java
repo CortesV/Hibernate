@@ -1,4 +1,4 @@
-package com.devcortes.components.service;
+package com.devcortes.components.service.dao;
 
 import java.util.ArrayList;
 import java.util.List;

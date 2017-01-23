@@ -2,6 +2,7 @@ package com.devcortes.service;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,8 @@ public class PhoneSecondService {
 	@Qualifier("second")
 	IPhoneDao iPhoneDao;
 	
-	public List<Phone> getAll() {		
-		return iPhoneDao.getAll();
+	public List<Phone> getAll(DetachedCriteria detachedCriteria) {		
+		return iPhoneDao.getAll(detachedCriteria);
 	}
 	
 	public Phone getById(Integer id){

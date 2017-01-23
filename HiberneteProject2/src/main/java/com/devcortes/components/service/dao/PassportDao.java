@@ -1,4 +1,4 @@
-package com.devcortes.components.service;
+package com.devcortes.components.service.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +36,11 @@ public class PassportDao implements IPassportDao{
 	public void delete(Integer id) {
 		Session session = null;
 		try {
-			session = HibernateUtil.getSessionFactory().openSession();			
+			session = HibernateUtil.getSessionFactory().openSession();		
+			session.beginTransaction(); 
 			Passport del = (Passport) session.get(Passport.class, id);
-	        session.delete(del);			
+	        session.delete(del);	
+	        session.getTransaction().commit();
 		} finally {
 			if (session.isOpen()) {
 	            session.close();
